@@ -2,7 +2,9 @@ package com.pizzeria.pizzeria.data;
 
 import com.pizzeria.pizzeria.model.Pizza;
 import com.pizzeria.pizzeria.repository.PizzaRepository;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.stream.Collectors;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 
+@Component
 public class CatalogGeneratorImpl implements CatalogGenerator {
     private List<String> toppings = asList("Queso", "Anana", "Peperoni", "Cebolla");
     private List<String> tamanos = asList("Chica", "Mediana", "Grande");
@@ -36,8 +39,7 @@ public class CatalogGeneratorImpl implements CatalogGenerator {
             Pizza pi = new Pizza(uid,price,style,size,topping);
             pizzas.add(pi);
         }
-        pizzaRepository.saveAll(pizzas);
-        return pizzas;
+        return pizzaRepository.saveAll(pizzas);
     }
 
     public List<String> buildCsv(){

@@ -1,6 +1,7 @@
 package com.pizzeria.pizzeria.controller;
 
 
+import com.pizzeria.pizzeria.data.CatalogGenerator;
 import com.pizzeria.pizzeria.model.Pizza;
 import com.pizzeria.pizzeria.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class PizzaController {
 
     @Autowired
     private PizzaService pizzaService;
+
+    @Autowired
+    private CatalogGenerator catalogGenerator;
 
     @GetMapping("/pizzas")
     public List<Pizza> getAll(){
@@ -27,5 +31,10 @@ public class PizzaController {
     @PostMapping("/pizzas")
     public Pizza createPizza(@RequestBody Pizza pizza){
         return pizzaService.savePizza(pizza);
+    }
+
+    @GetMapping("/pizzas/start")
+    public List<Pizza> createRandomCatalog(){
+        return catalogGenerator.generateFinalCatalog();
     }
 }
