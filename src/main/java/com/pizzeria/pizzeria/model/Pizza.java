@@ -20,6 +20,7 @@ public class Pizza {
     private Float price;
     private String style;
     private String size;
+    private String topping;
 
 
 

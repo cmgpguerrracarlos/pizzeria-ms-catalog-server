@@ -1,7 +1,10 @@
 package com.pizzeria.pizzeria.data;
 
 import com.pizzeria.pizzeria.model.Pizza;
+import com.pizzeria.pizzeria.repository.PizzaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,16 +15,29 @@ public class CatalogGeneratorImpl implements CatalogGenerator {
     private List<String> toppings = asList("Queso", "Anana", "Peperoni", "Cebolla");
     private List<String> tamanos = asList("Chica", "Mediana", "Grande");
     private List<String> estilo = asList("napolitana", "yankee");
+    @Autowired
+    private PizzaRepository pizzaRepository;
 
     public static void main(String[] args) {
-        List<String> catalog = new CatalogGeneratorImpl().buildCsv();
-        catalog.stream().forEach(System.out::println);
+        //List<String> catalog = new CatalogGeneratorImpl().buildCsv();
+        //catalog.stream().forEach(System.out::println);
     }
 
-    public List<String> generateFinalCatalog(){
+    public List<Pizza> generateFinalCatalog(){
         List<String> catalog = new CatalogGeneratorImpl().buildCsv();
-        return catalog;
-        //Pizza repository.saveAll()
+        List<Pizza> pizzas = new ArrayList<>();
+        for(String pizza:catalog){
+            String [] data = pizza.split(",");
+            String uid = data[0];
+            Float price = Float.parseFloat(data[4]);
+            String style = data[1];
+            String size = data[3];
+            String topping = data[2];
+            Pizza pi = new Pizza(uid,price,style,size,topping);
+            pizzas.add(pi);
+        }
+        pizzaRepository.saveAll(pizzas);
+        return pizzas;
     }
 
     public List<String> buildCsv(){
