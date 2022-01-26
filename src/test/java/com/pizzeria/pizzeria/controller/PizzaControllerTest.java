@@ -1,6 +1,7 @@
 package com.pizzeria.pizzeria.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pizzeria.pizzeria.data.CatalogGenerator;
 import com.pizzeria.pizzeria.model.Pizza;
 import com.pizzeria.pizzeria.service.PizzaService;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,6 +40,9 @@ class PizzaControllerTest {
     @MockBean
     PizzaService pizzaService;
 
+    @MockBean
+    CatalogGenerator catalogGenerator;
+
     List<Pizza> listMockPizzas;
 
     @BeforeEach
@@ -59,7 +63,7 @@ class PizzaControllerTest {
 
         mockMvc.perform(get(baseUrl).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$[2].uid").value("yPG"))
+                .andExpect(jsonPath("$[2].uid").value("yCC"))
                 .andExpect(jsonPath("$[2].style").value("yankee"));
 
     }
