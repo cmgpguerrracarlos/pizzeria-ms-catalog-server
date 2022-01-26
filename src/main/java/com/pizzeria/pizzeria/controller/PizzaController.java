@@ -37,4 +37,9 @@ public class PizzaController {
     public List<Pizza> createRandomCatalog(){
         return catalogGenerator.generateFinalCatalog();
     }
+
+    @GetMapping("/pizzas/price/{code}")
+    public Float getPriceFromCode(@PathVariable("code") String code){
+        return pizzaService.getPizzaByCode(code).getPrice();
+    }
 }
