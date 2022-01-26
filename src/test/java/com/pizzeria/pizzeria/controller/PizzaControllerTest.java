@@ -72,11 +72,12 @@ class PizzaControllerTest {
     @DisplayName("Test getPizzasByCode")
     void testGetThePizzas() throws Exception {
         given(pizzaService.getPizzaByCode("yPG")).willReturn(listMockPizzas.get(1));
-        mockMvc.perform(get(baseUrl + "/2").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get(baseUrl + "/yPG").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.uid").value("yPG"))
                 .andExpect(jsonPath("$.style").value("yankee"));
     }
+
 
     @Test
     @DisplayName("Test createPizza")
