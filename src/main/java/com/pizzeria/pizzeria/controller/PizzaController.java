@@ -4,6 +4,7 @@ package com.pizzeria.pizzeria.controller;
 import com.pizzeria.pizzeria.data.CatalogGenerator;
 import com.pizzeria.pizzeria.model.Pizza;
 import com.pizzeria.pizzeria.service.PizzaService;
+import com.thoughtworks.xstream.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,23 +46,19 @@ public class PizzaController {
         return pizzaService.getPizzaByCode(code).getPrice();
     }
 
-    /*@PutMapping(value = "/pizzas")
+    @PutMapping(value = "/pizzas")
     public ResponseEntity<Pizza> updateCatalog(@RequestBody Pizza pizza){
         try{
             return new ResponseEntity<>(pizzaService.updateCatalog(pizza), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-    }*/
+    }
 
     @DeleteMapping(value = "/pizzas/{uid}")
-    public ResponseEntity<Pizza> deleteOrder(@PathVariable("uid") String uid){
-        try{
+    public ResponseEntity<Pizza> deletePizza(@PathVariable("uid") String uid){
             pizzaService.deletePizzaByCode(uid);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
 
     }
 }

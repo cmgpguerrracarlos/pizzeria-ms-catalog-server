@@ -89,6 +89,31 @@ class PizzaControllerTest {
                 .andExpect(status().is2xxSuccessful());
 
     }
+
+    @Test
+    @DisplayName("Test updateCatalog")
+    void testUpdateCatalog() throws Exception {
+        var Pizza = listMockPizzas.get(1);
+        given(pizzaService.updateCatalog(Pizza)).willReturn(Pizza);
+        String orderJsonString = this.mapper.writeValueAsString(Pizza);
+        mockMvc.perform(post(baseUrl + "/").contentType(MediaType.APPLICATION_JSON).content(orderJsonString))
+                .andExpect(status().is2xxSuccessful());
+
+    }
+
+   /* @Test
+    @DisplayName("Test deletePizza")
+    void testDeletePizza() throws Exception {
+        var Pizza = listMockPizzas.get(2);
+
+        given(pizzaService.deletePizzaByCode("yCC").willReturn(Pizza);
+        String orderJsonString = this.mapper.writeValueAsString(Pizza);
+        mockMvc.perform(post(baseUrl + "/").contentType(MediaType.APPLICATION_JSON).content(orderJsonString))
+                .andExpect(status().is2xxSuccessful());
+
+    }*/
+
+
 }
 
 

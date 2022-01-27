@@ -28,7 +28,7 @@ public class PizzaService {
         return pizzaRepository.save(pizza);
     }
 
-    public Object updateCatalog(Pizza pizza) {
+    public Pizza updateCatalog(Pizza pizza) {
         return pizzaRepository.save(pizza);
     }
 

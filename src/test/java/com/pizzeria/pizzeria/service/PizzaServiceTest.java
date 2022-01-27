@@ -72,7 +72,6 @@ class PizzaServiceTest {
         Mockito.when(pizzaRepository.save(pizza)).thenReturn(pizza);
         Mockito.when(pizzaService.getPizzaByCode("yPM")).thenReturn(pizza);
         var result = pizzaService.savePizza(pizza);
-        assertNotNull(result,"Verify object is not null");
         assertEquals(278.0F,result.getPrice(), "Testing price of the result");
         assertEquals("yankee",result.getStyle(), "Testing style of the result");
     }
@@ -85,7 +84,7 @@ class PizzaServiceTest {
         assertNotNull(result,"Verify object is not null");
         assertEquals(272.0F,result.getPrice(), "Testing price of the result");
         assertEquals("Grande",result.getSize(), "Testing size of the result");
-        //assertEquals(12F,result.getTotal(),"Testing the total");
+
     }
 
     @Test
