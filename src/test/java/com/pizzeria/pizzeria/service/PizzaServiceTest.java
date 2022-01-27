@@ -70,7 +70,7 @@ class PizzaServiceTest {
     void savePizza() {
         var pizza = listMockPizzas.get(0);
         Mockito.when(pizzaRepository.save(pizza)).thenReturn(pizza);
-        Mockito.when(pizzaService.getPizzaByCode("yPM")).thenReturn(pizza);
+        //Mockito.when(pizzaService.getPizzaByCode("yPM")).thenReturn(pizza);
         var result = pizzaService.savePizza(pizza);
         assertEquals(278.0F,result.getPrice(), "Testing price of the result");
         assertEquals("yankee",result.getStyle(), "Testing style of the result");
