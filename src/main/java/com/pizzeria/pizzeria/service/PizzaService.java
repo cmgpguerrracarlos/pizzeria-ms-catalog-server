@@ -15,7 +15,7 @@ public class PizzaService {
     private PizzaRepository pizzaRepository;
 
 
-  public List<Pizza> getAll() {
+    public List<Pizza> getAll() {
         System.out.println(pizzaRepository.findAll());
         return pizzaRepository.findAll();
     }
@@ -25,7 +25,14 @@ public class PizzaService {
     }
 
     public Pizza savePizza(Pizza pizza) {
-        //pizzaRepository.saveAll(pizza.toString());
         return pizzaRepository.save(pizza);
+    }
+
+    public Object updateCatalog(Pizza pizza) {
+        return pizzaRepository.save(pizza);
+    }
+
+    public void deletePizzaByCode(String uid){
+        pizzaRepository.deleteById(uid);
     }
 }
